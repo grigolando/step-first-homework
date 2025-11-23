@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ka">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Google — კლონი (AI-ის დახმარებით)</title>
+  <meta name="description" content="ლაკონური Google-ის მთავარი ფეიჯის ჰუმანური კლონი: centered logo, search box, shortcut buttons და footer" />
+  <style>
+    :root{
+      --bg: #ffffff;
+      --muted: #70757a;
+      --accent: #1a73e8;
+      --input-bg: #f1f3f4;
+      --shadow: 0 4px 10px rgba(60,64,67,0.15);
+      --radius: 24px;
+      --max-width: 720px;
+      font-family: Inter, Roboto, Arial, sans-serif;
+    }
+
+    html,body{height:100%;}
+    body{
+      margin:0;
+      display:flex;
+      flex-direction:column;
+      background:var(--bg);
+      color:#202124;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
+    }
+
+    /* Header */
+    header{
+      display:flex;
+      justify-content:flex-end;
+      gap:16px;
+      padding:18px 24px;
+      align-items:center;
+    }
+    header a{color:var(--muted); text-decoration:none; font-size:14px}
+
+    /* Center area */
+    main{
+      flex:1 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 16px;
+    }
+    .stage{
+      width:100%;
+      max-width:1100px;
+      text-align:center;
+    }
+
+    /* Logo (text-based, not Google's trademark image) */
+    .logo{
+      font-size:94px;
+      line-height:1;
+      font-weight:700;
+      margin-bottom:22px;
+      letter-spacing:2px;
+      display:inline-block;
+      user-select:none;
+    }
+    /* colored dots to evoke Google feel without copying logo */
+    .logo span{display:inline-block; vertical-align:middle}
+    .logo .g1{color:#4285F4}
+    .logo .g2{color:#DB4437}
+    .logo .g3{color:#F4B400}
+    .logo .g4{color:#0F9D58}
+    .logo .g5{color:#4285F4}
+
+    /* Search box */
+    .search-wrap{
+      margin:18px auto 14px auto;
+      max-width:var(--max-width);
+    }
+    form.search{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:var(--input-bg);
+      border-radius:999px;
+      padding:12px 18px;
+      box-shadow:var(--shadow);
+      transition:box-shadow .15s, transform .08s;
+      border:1px solid rgba(0,0,0,0.05);
+    }
+    form.search:focus-within{box-shadow:0 8px 20px rgba(60,64,67,0.2); transform:translateY(-1px)}
+
+    .search .icon{width:20px;height:20px;flex:0 0 20px;opacity:.7}
+    .search input[type="search"]{
+      border:0;
+      background:transparent;
+      outline:none;
+      flex:1 1 auto;
+      font-size:18px;
+      min-width:0;
+    }
+
+    /* Buttons */
+    .btns{margin-top:16px}
+    .btn{display:inline-block; padding:10px 16px; margin:6px; border-radius:4px; font-size:14px; text-decoration:none; border:1px solid rgba(0,0,0,0.12); background:#fff; color:#3c4043; cursor:pointer}
+    .btn.primary{background:var(--accent); color:white; border:none; box-shadow:0 1px 0 rgba(0,0,0,0.05)}
+
+    /* Shortcuts below search */
+    .shortcuts{margin-top:28px; display:flex; justify-content:center; gap:12px; flex-wrap:wrap}
+    .card{background:#fff; padding:10px 12px; border-radius:12px; box-shadow:var(--shadow); border:1px solid rgba(0,0,0,0.04); font-size:14px}
+
+    /* Footer */
+    footer{
+      border-top:1px solid #e6e6e6;
+      padding:12px 24px;
+      display:flex;
+      justify-content:space-between;
+      font-size:13px;
+      color:var(--muted);
+      align-items:center;
+    }
+    .left, .right{display:flex; gap:18px}
+    a.small{color:var(--muted); text-decoration:none}
+
+    /* Responsive tweaks */
+    @media (max-width:600px){
+      .logo{font-size:64px}
+      .btn{padding:9px 12px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#">Gmail</a>
+    <a href="#">Images</a>
+    <a href="#" aria-label="Google apps">⋮</a>
+    <a href="#" class="btn" style="padding:8px 12px;border-radius:20px">Sign in</a>
+  </header>
+
+  <main>
+    <div class="stage" role="main">
+      <h1 class="logo" aria-hidden="true">
+        <span class="g1">G</span><span class="g2">o</span><span class="g3">o</span><span class="g4">g</span><span class="g5">l</span><span style="color:#DB4437">e</span>
+      </h1>
+
+      <div class="search-wrap">
+        <!-- This form will actually search on Google if you press Enter or click Search -->
+        <form class="search" action="https://www.google.com/search" method="GET" role="search" aria-label="Google search">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+
+          <input type="search" name="q" placeholder="ძიება Google-ში" aria-label="ძიება" autocomplete="off" />
+
+          <button type="button" title="მიკროფონი" aria-label="მონაცემის ხმოვანი ძებნა" style="background:none;border:0;cursor:pointer;opacity:.7">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M19 11v1a7 7 0 0 1-14 0v-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 19v3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </form>
+
+        <div class="btns" role="region" aria-label="ძებნის კომენდები">
+          <button class="btn primary" onclick="document.querySelector('.search input').value && document.querySelector('.search').submit()">Google Search</button>
+          <button class="btn" onclick="alert('I am feeling lucky — simulation')">I'm Feeling Lucky</button>
+        </div>
+
+        <div class="shortcuts" aria-hidden="true">
+          <div class="card">Gmail</div>
+          <div class="card">Maps</div>
+          <div class="card">YouTube</div>
+          <div class="card">News</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="left">
+      <span>Georgia</span>
+      <a href="#" class="small">About</a>
+      <a href="#" class="small">Advertising</a>
+      <a href="#" class="small">Business</a>
+    </div>
+    <div class="right">
+      <a href="#" class="small">Privacy</a>
+      <a href="#" class="small">Terms</a>
+      <a href="#" class="small">Settings</a>
+    </div>
+  </footer>
+
+  <script>
+  // small accessible enhancement: press Enter on empty input does nothing
+  (function(){
+    const form = document.querySelector('.search');
+    const input = document.querySelector('.search input');
+    // safety checks to avoid runtime errors if elements are missing
+    if (!form || !input) return;
+
+    form.addEventListener('submit', function(e){
+      if (!input.value.trim()){
+        e.preventDefault();
+        input.focus();
+      }
+    });
+  })();
+</script>
+</body>
+</html>
